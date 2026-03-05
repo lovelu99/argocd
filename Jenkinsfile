@@ -35,11 +35,11 @@ pipeline {
                 
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-                // Add your deploy steps here
-            }
+        stage('Clean workspace') {
+        steps {
+            echo 'Cleaning up workspace...'
+            cleanWs()
         }
+    }
     }
 }
