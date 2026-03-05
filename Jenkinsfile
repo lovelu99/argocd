@@ -21,6 +21,7 @@ pipeline {
                 // Add your test steps here
                 sh 'git config --global user.name "Your Name"'
                 sh 'git config --global user.email "your.email@example.com"'
+                sh 'git checkout main'
                 sh 'git add ./k8s/deployment.yaml'
                 sh "git commit -m 'Update deployment with image tag ${params.IMAGE_TAG}'"
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
