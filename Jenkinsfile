@@ -25,7 +25,7 @@ pipeline {
                 sh "git commit -m 'Update deployment with image tag ${params.IMAGE_TAG}'"
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
                    // some block
-                     sh "git push https://${username}:${password}@github.com/${username}/argocd.git main"
+                     sh "git push https://$username:$password@github.com/${username}/argocd.git main"
                 }
                 
             }
