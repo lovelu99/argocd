@@ -31,15 +31,16 @@ pipeline {
                 //     sh '''
                 //         git push https://$username:$password@github.com/$username/argocd.git HEAD:main
                 //     '''
-                // }
+                 }
                 
             }
         }
         stage('Clean workspace') {
-        steps {
-            echo 'Cleaning up workspace...'
-            cleanWs()
+            steps {
+                echo 'Cleaning up workspace...'
+                cleanWs()
+            }
         }
-    }
+       
     }
 }
