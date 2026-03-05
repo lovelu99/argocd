@@ -27,11 +27,11 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
                    // some block
                     //  sh "git push https://$username:$password@github.com/${username}/argocd.git main"
-                    //  sh "git push https://$username:$password@github.com/${username}/argocd.git main"
-                    sh '''
-                        git push https://$username:$password@github.com/$username/argocd.git HEAD:main
-                    '''
-                }
+                      sh "git push https://$username:$password@github.com/${username}/argocd.git main"
+                //     sh '''
+                //         git push https://$username:$password@github.com/$username/argocd.git HEAD:main
+                //     '''
+                // }
                 
             }
         }
