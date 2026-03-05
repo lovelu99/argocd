@@ -6,16 +6,28 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Update Deployment') {
             steps {
-                echo 'Building...'
+                echo 'update deployment...'
                 // Add your build steps here
+                sh 'cat ./k8s/deployment.yaml'
+                sh "sed -i 's/image: noakhali\\/myapp:.*/image: noakhali\\/myapp:${params.IMAGE_TAG}/g' ./k8s/deployment.yaml"
+                sh 'cat ./k8s/deployment.yaml'
             }
         }
-        stage('Test') {
+        stage('Push to git hub') {
             steps {
-                echo 'Testing...'
+                echo 'push to git hub...'
                 // Add your test steps here
+                sh 'git config --global user.name "Your Name"'
+                sh 'git config --global user.email "your.email@example.com"'
+                sh 'git add ./k8s/deployment.yaml'
+                sh "git commit -m 'Update deployment with image tag ${params.IMAGE_TAG}'"
+                withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
+                   // some block
+                     sh "git push https://${username}:${password}@github.com/${username}/argocd.git main"
+                }
+                
             }
         }
         stage('Deploy') {
