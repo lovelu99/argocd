@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: noakhali/myapp:12
+        image: noakhali/myapp:11
         resources: {}
 status: {}
