@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: test
-  name: test
+    app: myapp
+  name: myapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test
+      app: myapp
   strategy: {}
   template:
     metadata:
       labels:
-        app: test
+        app: myapp
     spec:
       containers:
-      - image: nginx
-        name: nginx
+      - name: myapp
+        image: noakhali/myapp:12
         resources: {}
 status: {}
